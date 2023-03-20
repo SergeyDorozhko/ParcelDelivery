@@ -1,4 +1,4 @@
-package org.darozhka.parceldelivery.iam.config;
+package org.darozhka.parceldelivery.delivery.config;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author S.Darozhka
  */
 @ControllerAdvice
-public class RestResponseEntityExceptionHandler  extends ResponseEntityExceptionHandler {
+public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RestResponseEntityExceptionHandler.class);
 
@@ -124,7 +124,8 @@ public class RestResponseEntityExceptionHandler  extends ResponseEntityException
     }
 
     private Optional<String> getLatestNotBlankMessage(Throwable ex) {
-        Validate.notNull(ex, "Exception is null", new Object[0]);
+        Validate.notNull(ex, "Exception is null");
+
         Set<Throwable> cycleBreaker = SetUtils.newIdentityHashSet();
         Throwable current = ex;
 
@@ -147,7 +148,8 @@ public class RestResponseEntityExceptionHandler  extends ResponseEntityException
         private final String message;
 
         public ErrorResponseBody(@JsonProperty("message") String message) {
-            Validate.notNull(message, "Message can't be null", new Object[0]);
+            Validate.notNull(message, "Message can't be null");
+
             this.message = message;
         }
 
@@ -167,7 +169,7 @@ public class RestResponseEntityExceptionHandler  extends ResponseEntityException
         }
 
         public int hashCode() {
-            return Objects.hash(new Object[]{this.message});
+            return Objects.hash(message);
         }
 
         public String toString() {
@@ -179,7 +181,7 @@ public class RestResponseEntityExceptionHandler  extends ResponseEntityException
         }
     }
 
-    public static class ConstraintViolationDto { //todo commons
+    public static class ConstraintViolationDto {
         private String propertyPath;
         private String message;
 
@@ -219,7 +221,7 @@ public class RestResponseEntityExceptionHandler  extends ResponseEntityException
         }
 
         public int hashCode() {
-            return Objects.hash(new Object[]{this.propertyPath, this.message});
+            return Objects.hash(this.propertyPath, this.message);
         }
 
         public String toString() {

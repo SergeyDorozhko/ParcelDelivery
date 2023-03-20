@@ -1,0 +1,50 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /
+
+springdoc:
+  packagesToScan: org.darozhka.parceldelivery.iam.rest
+  swagger-ui:
+    docExpansion: none
+    path: /swagger-ui.html
+    tagsSorter: alpha
+    operationsSorter: alpha
+
+spring:
+  main:
+    allow-circular-references: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  liquibase:
+    change-log: classpath:db-migration/changelog-master.xml
+  datasource:
+    url: jdbc:postgresql://localhost:5444/iam
+    username: parcel_delivery
+    password: parcel_delivery
+    hikari:
+      maximum-pool-size: 15
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://guavapay-auth-server:9090
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: TRACE
+    org.springframework.security: TRACE
+    org.springframework.security.oauth2: TRACE
+
+parceldelivery:
+  iam:
+    oauth2:
+      issuer: http://guavapay-auth-server:9090
+  kafka:
+    bootstrap-address: localhost:9092
+    topicName: "parceldelivery"
+    consumerGroupId: "iam"

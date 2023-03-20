@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>service</module>
+        <module>commons</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>2.7.9</version>
+    </parent>
+
+    <groupId>org.darozhka.parceldelivery.delivery</groupId>
+    <artifactId>delivery-service-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+
+        <commons-collections4.version>4.4</commons-collections4.version>
+
+        <springdoc-openapi.version>1.6.15</springdoc-openapi.version>
+
+        <parcel-delivery-iam-commons.version>0.0.1-SNAPSHOT</parcel-delivery-iam-commons.version>
+        <parcel-delivery-service-commons.version>0.0.1-SNAPSHOT</parcel-delivery-service-commons.version>
+        <parcel-delivery-resource-server.version>0.0.1-SNAPSHOT</parcel-delivery-resource-server.version>
+        <parcel-delivery-commons.version>0.0.1-SNAPSHOT</parcel-delivery-commons.version>
+        <parcel-delivery-kafka.version>0.0.1-SNAPSHOT</parcel-delivery-kafka.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc-openapi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.darozhka.parceldelivery.iam</groupId>
+                <artifactId>identity-and-access-management-commons</artifactId>
+                <version>${parcel-delivery-iam-commons.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.security</groupId>
+                        <artifactId>spring-security-oauth2-authorization-server</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.darozhka.parceldelivery</groupId>
+                <artifactId>parcel-delivery-commons</artifactId>
+                <version>${parcel-delivery-commons.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.darozhka.parceldelivery</groupId>
+                <artifactId>parcel-delivery-kafka</artifactId>
+                <version>${parcel-delivery-kafka.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.darozhka.parceldelivery.security</groupId>
+                <artifactId>resource-server</artifactId>
+                <version>${parcel-delivery-resource-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.darozhka.parceldelivery.delivery</groupId>
+                <artifactId>delivery-service-commons</artifactId>
+                <version>${parcel-delivery-service-commons.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

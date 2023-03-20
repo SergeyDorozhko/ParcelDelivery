@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.darozhka.parceldelivery.resource.autoconfigure.ResourceServerAutoConfiguration,\
+org.darozhka.parceldelivery.resource.autoconfigure.WebSecurityAutoConfiguration

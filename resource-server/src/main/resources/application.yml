@@ -1,0 +1,18 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://127.0.0.1:9090
+      client:
+        registration:
+          gourm-ai-rest:
+            provider: parcel-delivery
+            client-id: parcel-delivery
+            client-secret: parcel-delivery
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:9091/login/oauth2/code/parcel-delivery"
+            scope: openid
+        provider:
+          gourm-ai-rest:
+            issuer-uri: http://127.0.0.1:9090
