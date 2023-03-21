@@ -2,8 +2,13 @@
 
 ## Environment preparation:
 
-> **! NOTE:** Add name resolution to your hosts (It is required by OAuth server.):
-> 127.0.0.1 guavapay-auth-server
+> ***! NOTE:***
+> 
+> Add name resolution to your hosts (It is required by OAuth server.) 
+> - run script `update-hosts.sh`
+> 
+>  or
+> - add manually `127.0.0.1 guavapay-auth-server`
 
 
 Run script `build-script.sh` on linux machine or prepare step by step as described above.
@@ -72,3 +77,8 @@ POST /api/registered-client
   ]
 }
 ```
+
+
+> ***! NOTE:*** 
+> 
+>  As for OAuth2 server redirection to `localhost` not allowed please use `127.0.0.1` during testing  
